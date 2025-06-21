@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <PackageId>Iconify</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>dylhack</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Iconify Blazor</Title>
+        <Description>Iconify for Blazor</Description>
+        <PackageProjectUrl>https://github.com/dylhack/iconify</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/dylhack/iconify</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageOutputPath>./nupkgs</PackageOutputPath>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.5"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.6"/>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+﻿@using Iconify.IconSets
+@inject Registry IconRegistry
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 @_width @_height"
+     width="@_width"
+     height="@_height"
+     @attributes="AdditionalAttributes">
+    @(Body)
+</svg>
+
+@code {
+
+    /// <summary>The icon name or "set:icon-name" string. Required.</summary>
+    [Parameter][EditorRequired]
+    public required string Name { get; set; }
+
+    /// <summary>Pass-through attributes (class, style, aria-*, …).</summary>
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private int _width = 24;
+    private int _height = 24;
+    private MarkupString Body { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (string.IsNullOrWhiteSpace(Name))
+            throw new ArgumentException("The 'Icon' parameter is required.", nameof(Icon));
+
+        IconId id = IconId.From(Name);
+        IconData iconData = IconRegistry.Resolve(id)
+                            ?? throw new ArgumentException($"Icon '{id}' not found.", nameof(Icon));
+
+        _width = iconData.Width ?? 24;
+        _height = iconData.Height ?? 24;
+        Body = (MarkupString)iconData.Body;
+    }
+
+}
